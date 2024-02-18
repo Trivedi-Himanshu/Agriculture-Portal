@@ -28,15 +28,18 @@ public class Product extends BaseEntity {
 	@Lob
 	private Byte[] image;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "manf_date", insertable = true, updatable = false)
 	private LocalDate manufacteDate;
 	
 	private String description;
 	
 	@ManyToOne
+	@JoinColumn(name = "order_id")
+	private Order_detail orderId;
+	
+	@ManyToOne
 	@JoinColumn(name = "seller_id")
-	private Order sellerId;
+	private Seller sellerId;
 	
 	public Product(String name,String brand,Category category,double price) {
 		this.name = name;
@@ -51,3 +54,24 @@ public class Product extends BaseEntity {
 		return " Product: "+name+"   "+brand+"   "+category+"   "+price+"   "+manufacteDate+"\n";
 	}
 }
+
+
+
+
+
+
+//@Entity
+//@Getter
+//@Setter
+//public class Product extends BaseEntity {
+//
+//    @ManyToOne
+//    @JoinColumn(name = "order_id")
+//    private Order_detail orders;
+//    
+//    @ManyToOne
+//    @JoinColumn(name = "seller_id")
+//    private Seller seller;
+//    
+//    // Other fields, constructors, toString method
+//}

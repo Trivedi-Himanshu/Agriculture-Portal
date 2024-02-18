@@ -9,12 +9,11 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
-public class Feedback{
+public class Feedback extends BaseEntity{
 
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
-	@MapsId
-	private Customer customer;
+	private Customer customerId;
 	
 	@Max(5)
 	@Min(1)
@@ -24,7 +23,7 @@ public class Feedback{
 	//email and name we will get from customers pojo
 	
 	public Feedback(Customer customer, int rating, String message) {
-		this.customer = customer;
+		this.customerId = customer;
 		this.rating = rating;
 		this.message = message;
 	}
@@ -34,3 +33,25 @@ public class Feedback{
 		return "Rating: "+this.rating+"\nFeedback: "+this.message+"\n";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+//
+//@Entity
+//@Getter
+//@Setter
+//public class Feedback extends BaseEntity {
+//
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
+//    
+//    // Other fields, constructors, toString method
+//}

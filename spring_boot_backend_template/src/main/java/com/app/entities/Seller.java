@@ -1,6 +1,7 @@
 package com.app.entities;
 
 import java.time.LocalDate;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -23,6 +24,9 @@ public class Seller extends BaseEntity {
 	@Column(nullable = false)
 	private String password;
 	
+	@OneToMany(mappedBy = "sellerId")
+	private List<Product> product = new ArrayList<>();
+	
 	public Seller(long phone,String name, String email, String pswd) {
 		this.phone = phone;
 		this.name = name;
@@ -35,3 +39,24 @@ public class Seller extends BaseEntity {
 		return "Seller: "+super.getId()+"   "+name+"   "+email+"   "+phone+" \n";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+//
+//@Entity
+//@Getter
+//@Setter
+//public class Seller extends BaseEntity {
+//
+//    @OneToMany(mappedBy = "seller", cascade = CascadeType.ALL)
+//    private List<Product> products = new ArrayList<>();
+//    
+//    // Other fields, constructors, toString method
+//}

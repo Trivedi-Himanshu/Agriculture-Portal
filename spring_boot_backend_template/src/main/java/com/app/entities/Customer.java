@@ -1,6 +1,7 @@
 package com.app.entities;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -13,17 +14,17 @@ import lombok.*;
 public class Customer extends BaseEntity{
 	
 	
-	@OneToMany(mappedBy = "customer_id",cascade = CascadeType.ALL)
-	private Address address;
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	private List<Address> address = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "customer_id",cascade = CascadeType.ALL)
-	private Feedback feedback;
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	private List<Feedback> feedback = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "customer_id",cascade = CascadeType.ALL)
-	private Order orders;
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	private List<Order_detail> orders = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "customer_id",cascade = CascadeType.ALL)
-	private List<Payment> payments;
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	private List<Payment> payments = new ArrayList<>();
 	
 	private String name;
 	
@@ -36,27 +37,51 @@ public class Customer extends BaseEntity{
 	@Column(nullable = false)
 	private long phone;
 	
-	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "create_date", insertable = true, updatable = false)
 	private LocalDate createDate;
 	
 	@Column(nullable = false)
 	private String gender;
 	
-	public Customer(String name, String email, String pswd, long phone, String gender, String city, String state, String zip, String country) {
+	public Customer(String name, String email, String pswd, long phone, String gender) {
 		this.name = name;
 		this.email = email;
 		this.pswd = pswd;
 		this.phone = phone;
 		this.gender = gender;
 		createDate = LocalDate.now();
-		this.address.setCity(city);
-		this.address.setState(state);
-		this.address.setZip(zip);
-		this.address.setCountry(country);
 	}
 	
 	public String toString() {
-		return "Customer: "+super.getId()+"   "+name+"   "+email+"   "+phone+"   "+gender+"   "+createDate+"   "+address.toString()+" \n";
+		return "Customer: "+super.getId()+"   "+name+"   "+email+"   "+phone+"   "+gender+"   "+createDate+"   "+address.toString()+" \n"; //here we can write only address instead of address.toString()
 	}
 }
+
+
+
+
+
+
+
+
+
+//
+//@Entity
+//@Getter
+//@Setter
+//public class Customer extends BaseEntity {
+//
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Address> addresses = new ArrayList<>();
+//    
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Feedback> feedbacks = new ArrayList<>();
+//    
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Order_detail> orders = new ArrayList<>();
+//    
+//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
+//    private List<Payment> payments = new ArrayList<>();
+//    
+//    // Other fields, constructors, toString method
+//}

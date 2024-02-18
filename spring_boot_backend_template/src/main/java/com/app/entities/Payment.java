@@ -13,7 +13,7 @@ public class Payment extends BaseEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
-	private Customer cutomer;
+	private Customer customerId;
 	
 	private String cardName;
 	private long cardNo;
@@ -32,3 +32,23 @@ public class Payment extends BaseEntity{
 		return "Payment details: "+ cardName+"   "+cardNo+"   "+amount+"   "+paymentDate+"\n";
 	}
 }
+
+
+
+
+
+
+
+
+
+//@Entity
+//@Getter
+//@Setter
+//public class Payment extends BaseEntity {
+//
+//    @ManyToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
+//    
+//    // Other fields, constructors, toString method
+//}
