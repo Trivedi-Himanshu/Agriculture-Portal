@@ -15,6 +15,10 @@ public class Feedback extends BaseEntity{
 	@JoinColumn(name = "customer_id")
 	private Customer customerId;
 	
+	@ManyToOne
+	@JoinColumn(name = "product_id")
+	private Product productId;
+	
 	@Max(5)
 	@Min(1)
 	private int rating;

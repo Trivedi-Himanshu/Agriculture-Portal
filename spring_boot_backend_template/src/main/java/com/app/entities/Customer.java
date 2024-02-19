@@ -28,6 +28,7 @@ public class Customer extends BaseEntity{
 	
 	private String name;
 	
+	//hi this is to be deleted line 
 	@Column(nullable = false)
 	private String email;
 	
