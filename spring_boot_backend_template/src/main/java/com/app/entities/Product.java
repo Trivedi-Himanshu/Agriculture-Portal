@@ -14,13 +14,13 @@ import lombok.Setter;
 public class Product extends BaseEntity {
 	@Column(nullable = false)
 	private String name;
-	
-	@Column(nullable = false)
-	private String brand;
-	
+//	
+//	@Column(nullable = false)
+//	private String brand;
+//	
 	//@Enumerated(EnumType.STRING) -- (now its an tables)
 	@ManyToOne
-	@Column(name = "category_id")
+	@JoinColumn(name = "category_id")
 	private Category categoryId;
 	
 	@Column(nullable = false)
@@ -44,13 +44,13 @@ public class Product extends BaseEntity {
 	
 	public Product(String name,String brand,double price) {
 		this.name = name;
-		this.brand = brand;
+//		this.brand = brand;
 		this.price = price;
 		manufacteDate = LocalDate.now();
 	}
 	
 	@Override
 	public String toString() {
-		return " Product: "+name+"   "+brand+"   "+categoryId.getName()+"   "+price+"   "+manufacteDate+"\n";
+		return " Product: "+name+"   "+""+"   "+categoryId.getName()+"   "+price+"   "+manufacteDate+"\n";
 	}
 }
