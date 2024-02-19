@@ -67,3 +67,6 @@ public class Customer extends BaseEntity{
 //to be applied on password in dto
 //@Column(length = 20,nullable = false)
 //@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})")
+
+
+// this is the line from bpojo1
