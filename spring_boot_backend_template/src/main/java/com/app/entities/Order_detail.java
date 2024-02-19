@@ -55,25 +55,3 @@ public class Order_detail extends BaseEntity{
 	}
 }
 
-
-
-
-
-
-
-
-
-//@Entity
-//@Getter
-//@Setter
-//public class Order_detail extends BaseEntity {
-//
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
-//    
-//    @OneToMany(mappedBy = "orders", cascade = CascadeType.ALL)
-//    private List<Product> products = new ArrayList<>();
-//    
-//    // Other fields, constructors, helper methods, toString method
-//}

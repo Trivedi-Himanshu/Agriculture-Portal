@@ -18,7 +18,7 @@ public class Customer extends BaseEntity{
 	private List<Address> address = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
-	private List<Feedback> feedback = new ArrayList<>();
+	private List<Feedback> feedbacks = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
 	private List<Order_detail> orders = new ArrayList<>();
@@ -28,11 +28,11 @@ public class Customer extends BaseEntity{
 	
 	private String name;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String email;
 	
 	@Column(nullable = false)
-	private String pswd;
+	private String password;
 	
 	@Column(nullable = false)
 	private long phone;
@@ -46,7 +46,7 @@ public class Customer extends BaseEntity{
 	public Customer(String name, String email, String pswd, long phone, String gender) {
 		this.name = name;
 		this.email = email;
-		this.pswd = pswd;
+		this.password = pswd;
 		this.phone = phone;
 		this.gender = gender;
 		createDate = LocalDate.now();
@@ -59,29 +59,6 @@ public class Customer extends BaseEntity{
 
 
 
-
-
-
-
-
-
-//
-//@Entity
-//@Getter
-//@Setter
-//public class Customer extends BaseEntity {
-//
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private List<Address> addresses = new ArrayList<>();
-//    
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private List<Feedback> feedbacks = new ArrayList<>();
-//    
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private List<Order_detail> orders = new ArrayList<>();
-//    
-//    @OneToMany(mappedBy = "customer", cascade = CascadeType.ALL)
-//    private List<Payment> payments = new ArrayList<>();
-//    
-//    // Other fields, constructors, toString method
-//}
+//to be applied on password in dto
+//@Column(length = 20,nullable = false)
+//@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})")

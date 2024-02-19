@@ -1,6 +1,14 @@
 package com.app.entities;
 
+import javax.persistence.*;
 
-public enum Category {
-	SEED, MACHINARY, FERTILIZERS, CROPS, FLOWERS
+import lombok.*;
+
+@Entity
+@Getter
+@Setter
+public class Category extends BaseEntity{
+	//	SEED, MACHINARY, FERTILIZERS, CROPS, FLOWERS
+	@Column(name = "Category_name", nullable = false, unique = true)
+	private String name; 
 }

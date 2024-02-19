@@ -33,25 +33,3 @@ public class Feedback extends BaseEntity{
 		return "Rating: "+this.rating+"\nFeedback: "+this.message+"\n";
 	}
 }
-
-
-
-
-
-
-
-
-
-
-//
-//@Entity
-//@Getter
-//@Setter
-//public class Feedback extends BaseEntity {
-//
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
-//    
-//    // Other fields, constructors, toString method
-//}

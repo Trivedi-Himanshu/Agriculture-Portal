@@ -14,6 +14,7 @@ public class Address extends BaseEntity{
 	
 	private String state;
 	
+	@Column(nullable = false)
 	private String zip;
 	
 	private String country;
@@ -37,30 +38,3 @@ public class Address extends BaseEntity{
 
 
 
-
-
-
-
-
-
-
-//
-//@Entity
-//@Getter
-//@Setter
-//public class Address extends BaseEntity {
-//
-//    private String city;
-//    
-//    private String state;
-//    
-//    private String zip;
-//    
-//    private String country;
-//    
-//    @ManyToOne
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
-//    
-//    // Constructors, toString method
-//}
