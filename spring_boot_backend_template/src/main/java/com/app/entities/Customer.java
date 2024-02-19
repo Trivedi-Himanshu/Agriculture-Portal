@@ -70,3 +70,4 @@ public class Customer extends BaseEntity{
 
 
 // this is the line from bpojo1
+// line is added from the bpojo2
