@@ -16,8 +16,9 @@ import lombok.*;
 public class Customer extends BaseEntity{
 	
 	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
-	private List<Address> address = new ArrayList<>();
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "addressId")
+	private Address address;
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
 	private List<Feedback> feedbacks = new ArrayList<>();

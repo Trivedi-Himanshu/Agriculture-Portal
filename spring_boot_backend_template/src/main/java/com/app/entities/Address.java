@@ -19,10 +19,6 @@ public class Address extends BaseEntity{
 	
 	private String country;
 	
-	@ManyToOne//(fetch=FetchType.LAZY) its by default
-	@JoinColumn(name = "customer_id")        
-	private Customer customerId;
-	
 	public Address(String city, String state, String zip, String country){
 		this.state = state;
 		this.city = city;
