@@ -14,6 +14,10 @@ public class Address extends BaseEntity{
 	
 	private String state;
 	
+	@ManyToOne
+	@JoinColumn(name = "customer_id")
+	private Customer customerId;
+	
 	@Column(nullable = false)
 	private String zip;
 	

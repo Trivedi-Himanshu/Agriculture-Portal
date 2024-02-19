@@ -16,15 +16,14 @@ import lombok.*;
 public class Customer extends BaseEntity{
 	
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "addressId")
-	private Address address;
+	@OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL)
+	private List<Address> address;
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
 	private List<Feedback> feedbacks = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
-	private List<Order_detail> orders = new ArrayList<>();
+	private List<OrderDetail> orders = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
 	private List<Payment> payments = new ArrayList<>();

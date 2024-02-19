@@ -12,7 +12,7 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
-public class Order_detail extends BaseEntity{
+public class OrderDetail extends BaseEntity{
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
@@ -29,7 +29,7 @@ public class Order_detail extends BaseEntity{
 	
 	private int quantity;
 	
-	public Order_detail(int quantity) {
+	public OrderDetail(int quantity) {
 		this.quantity = quantity;
 	}
 	

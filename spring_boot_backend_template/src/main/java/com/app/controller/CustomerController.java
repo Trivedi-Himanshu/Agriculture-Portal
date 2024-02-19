@@ -1,0 +1,60 @@
+package com.app.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.app.entities.Customer;
+import com.app.service.CustomerService;
+
+@RestController
+@RequestMapping("/customer")
+public class CustomerController {
+	@Autowired
+	CustomerService customerService;
+	
+	@GetMapping("/all")
+	public List<Customer> findAll(){
+		return customerService.findAll();
+	}
+	
+	@GetMapping("/byEmail")
+	public Customer findByEmail(String email) {
+		return customerService.findByEmail(email);
+	}
+	
+	@PostMapping("/addCustomer")
+	public boolean addCustomer(Customer customer) {
+		boolean flag = false;
+		customerService.addCustomer(customer);
+		flag = true;
+		return flag;
+	}
+}
+
+
+
+//
+//@RestController
+//@RequestMapping("/customer")
+//public class CustomerController {
+//	@Autowired
+//	CustomerService customerService;
+//	
+//	public CustomerController()
+//	{
+//		System.out.println("in ctor of "+ getClass());
+//	}
+//	
+//	@GetMapping
+//	public List<Integer> testMe()
+//	{
+//		System.out.println("in test me");
+//		return List.of(1,2,3,4,5);
+//		
+//	}
+//}
