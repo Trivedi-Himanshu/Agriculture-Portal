@@ -69,3 +69,4 @@ public class Customer extends BaseEntity{
 //@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})")
 
 
+// this is the line from bpojo1
