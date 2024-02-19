@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import lombok.*;
 
@@ -28,10 +30,13 @@ public class Customer extends BaseEntity{
 	
 	private String name;
 	
-	@Column(nullable = false, unique = true)
+	//hi this is to be deleted line 
+	@Column(nullable = false)
 	private String email;
 	
 	@Column(nullable = false)
+	@Min(8)
+	@Max(30)
 	private String password;
 	
 	@Column(nullable = false)
