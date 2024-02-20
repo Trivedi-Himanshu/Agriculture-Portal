@@ -7,12 +7,20 @@ import java.util.List;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+
 import lombok.*;
 
 @Entity
 @Setter
 @Getter
-public class OrderDetail extends BaseEntity{
+@NoArgsConstructor
+public class OrderDetail{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")
@@ -31,7 +39,14 @@ public class OrderDetail extends BaseEntity{
 	
 	public OrderDetail(int quantity) {
 		this.quantity = quantity;
+		orderDate = LocalDate.now();
+		
 	}
+	
+	//how to find payment
+//	public void paymentDetail() {
+//		this.payment =
+//	}
 	
 	//helper methods
 	public boolean addProduct(Product p) {

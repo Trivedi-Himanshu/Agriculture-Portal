@@ -5,15 +5,23 @@ import java.time.LocalDate;
 import javax.persistence.*;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 
 @Entity
 @Setter
 @Getter
-public class Product extends BaseEntity {
+@NoArgsConstructor
+public class Product {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
+	
 	@Column(nullable = false)
-	private String name;
+	private String pName;
 //	
 //	@Column(nullable = false)
 //	private String brand;
@@ -43,7 +51,7 @@ public class Product extends BaseEntity {
 	private Seller sellerId;
 	
 	public Product(String name,String brand,double price) {
-		this.name = name;
+		this.pName = name;
 //		this.brand = brand;
 		this.price = price;
 		manufacteDate = LocalDate.now();
@@ -51,6 +59,6 @@ public class Product extends BaseEntity {
 	
 	@Override
 	public String toString() {
-		return " Product: "+name+"   "+""+"   "+categoryId.getName()+"   "+price+"   "+manufacteDate+"\n";
+		return " Product: "+pName+"   "+""+"   "+categoryId.getCatName()+"   "+price+"   "+manufacteDate+"\n";
 	}
 }

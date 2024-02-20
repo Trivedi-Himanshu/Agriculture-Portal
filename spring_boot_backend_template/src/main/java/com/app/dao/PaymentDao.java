@@ -8,7 +8,7 @@ import com.app.entities.Customer;
 import java.util.List;
 
 public interface PaymentDao extends JpaRepository<Payment, Integer> {
-	List<Payment> findByCustomerId(Customer customerid);
+	List<Payment> findByCustomerId(int customerid);
 	
 	List<Payment> findByCardNo(long cardno);
 }

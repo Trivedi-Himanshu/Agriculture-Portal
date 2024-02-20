@@ -13,8 +13,13 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-public class Customer extends BaseEntity{
+@NoArgsConstructor        //--its used by ModelMapper internally therefore give noArgsConstructor
+public class Customer{
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
 	
 	@OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL)
 	private List<Address> address;
@@ -30,13 +35,11 @@ public class Customer extends BaseEntity{
 	
 	private String name;
 	
-	//hi this is to be deleted line 
 	@Column(nullable = false)
 	private String email;
 	
 	@Column(nullable = false)
-	@Min(8)
-	@Max(30)
+
 	private String password;
 	
 	@Column(nullable = false)
@@ -58,7 +61,7 @@ public class Customer extends BaseEntity{
 	}
 	
 	public String toString() {
-		return "Customer: "+super.getId()+"   "+name+"   "+email+"   "+phone+"   "+gender+"   "+createDate+"   "+address.toString()+" \n"; //here we can write only address instead of address.toString()
+		return "Customer: "+id+"   "+name+"   "+email+"   "+phone+"   "+gender+"   "+createDate+"   "+" \n"; //here we can write only address instead of address.toString()
 	}
 }
 

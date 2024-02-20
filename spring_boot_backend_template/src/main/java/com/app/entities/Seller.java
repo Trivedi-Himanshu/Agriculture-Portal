@@ -12,7 +12,13 @@ import lombok.*;
 @Entity
 @Setter
 @Getter
-public class Seller extends BaseEntity {
+@NoArgsConstructor
+public class Seller {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
 	
 	@Column(nullable = false, unique = true)
 	private long phone;
@@ -24,8 +30,6 @@ public class Seller extends BaseEntity {
 	private String email;
 	
 	@Column(nullable = false)
-	@Min(8)
-	@Max(30)
 	private String password;
 	
 	@OneToMany(mappedBy = "sellerId")
@@ -40,7 +44,7 @@ public class Seller extends BaseEntity {
 	
 	@Override
 	public String toString() {
-		return "Seller: "+super.getId()+"   "+name+"   "+email+"   "+phone+" \n";
+		return "Seller: "+id+"   "+name+"   "+email+"   "+phone+" \n";
 	}
 }
 

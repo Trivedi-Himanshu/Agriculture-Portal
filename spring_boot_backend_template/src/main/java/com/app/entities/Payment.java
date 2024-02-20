@@ -9,7 +9,13 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-public class Payment extends BaseEntity{
+@NoArgsConstructor
+public class Payment{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
 	
 	@ManyToOne
 	@JoinColumn(name = "customer_id")

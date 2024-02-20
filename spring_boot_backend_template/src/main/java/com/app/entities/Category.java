@@ -10,10 +10,18 @@ import lombok.*;
 @Entity
 @Getter
 @Setter
-public class Category extends BaseEntity{
+@NoArgsConstructor
+public class Category{
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
+	private Integer id;
+	
+	
 	//	SEED, MACHINARY, FERTILIZERS, CROPS, FLOWERS
 	@Column(name = "Category_name", nullable = false, unique = true)
-	private String name; 
+	private String catName; 
 
 	@OneToMany(mappedBy = "categoryId")
 	private List<Product> products = new ArrayList<>();
