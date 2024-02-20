@@ -21,16 +21,16 @@ public class Customer{
 	@Column(name = "id")
 	private Integer id;
 	
-	@OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Address> address;
 	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Feedback> feedbacks = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<OrderInfo> orders = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private List<Payment> payments = new ArrayList<>();
 	
 	private String name;

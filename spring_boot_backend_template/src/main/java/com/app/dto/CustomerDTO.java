@@ -5,27 +5,31 @@ import java.time.LocalDate;
 import com.app.entities.Address;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Getter
 @Setter
 @ToString
+@NoArgsConstructor
 public class CustomerDTO {
 
 	//customer
-	private String name;
+	
+	 String name;
 
-	private String email;
+	 String email;
 	
-	private String password;
+	 String password;
 
-	private long phone;
+	 long phone;
 	
-	private LocalDate createDate;
+	 LocalDate createDate;
 	
-	private String gender;
+	 String gender;
 	
+<<<<<<< HEAD
 //	//address
 //	private String state;
 //	
@@ -46,4 +50,12 @@ public class CustomerDTO {
 //	private long cardNo;
 //	
 //	private double amount;
+=======
+	public CustomerDTO(String name,String email,String gender,long phone) {
+		this.name = name;
+		this.email = email;
+		this.gender = gender;
+		this.phone = phone;
+	}
+>>>>>>> branch3
 }

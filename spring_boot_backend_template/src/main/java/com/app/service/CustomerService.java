@@ -2,6 +2,7 @@ package com.app.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -22,24 +23,31 @@ public class CustomerService implements ICustomerService{
 	private CustomerDao customerDao;
 	
 	@Autowired
-	private AddressDao addressDao;
-	
-	@Autowired
 	private ModelMapper mapper;
 	
 	@Override
-	public List<Customer> findAll(){
-		List<CustomerDTO> listCust = new ArrayList<CustomerDTO>();
+
+	public List<CustomerDTO> findAll(){
+		List<CustomerDTO> listCustDto = new ArrayList<CustomerDTO>(); 
+
 		List<Customer> listCustomer = customerDao.findAll();
 		
-//		listCust = mapper.map(listCustomer, CustomerDTO.class);
+		listCustDto = listCustomer.stream()
+	            .map(c -> mapper.map(c, CustomerDTO.class))
+	            .collect(Collectors.toList());
 		
-		return listCustomer;
+		return listCustDto;
+
 	}
 	
 	@Override
-	public Customer findByEmail(String email) {
-		return customerDao.findByEmail(email);
+	public CustomerDTO findByEmail(String email) {
+		
+		Customer cust = customerDao.findByEmail(email);
+		
+		CustomerDTO custDto = mapper.map(cust, CustomerDTO.class);
+		
+		return custDto;
 	}
 	
 	@Override
