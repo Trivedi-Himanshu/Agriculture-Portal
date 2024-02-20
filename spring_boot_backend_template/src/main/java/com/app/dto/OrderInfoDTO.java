@@ -21,7 +21,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class OrderDetailsDTO {
+public class OrderInfoDTO {
 	
 	private Customer customerId;
 	

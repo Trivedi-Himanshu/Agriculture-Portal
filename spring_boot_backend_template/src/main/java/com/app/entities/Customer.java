@@ -28,7 +28,7 @@ public class Customer{
 	private List<Feedback> feedbacks = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
-	private List<OrderDetail> orders = new ArrayList<>();
+	private List<OrderInfo> orders = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL)
 	private List<Payment> payments = new ArrayList<>();

@@ -7,7 +7,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
-import com.app.entities.OrderDetail;
 import com.app.entities.Seller;
 
 import lombok.*;
@@ -28,7 +27,7 @@ public class ProductDTO {
 	
 	private String description;
 	
-	private OrderDetail orderId;
+//	private OrderDetail orderId;
 	
 	private Seller sellerId;
 	

@@ -10,14 +10,14 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Address{
+public class Address extends BaseEntity{
 	
 	
 	private String city;
 	
 	private String state;
 	
-	@Id
+	
 	@ManyToOne
 	@JoinColumn(name = "customer_id", referencedColumnName = "id")
 	private Customer customerId;

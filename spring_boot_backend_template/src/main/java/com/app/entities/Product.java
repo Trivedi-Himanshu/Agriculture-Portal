@@ -42,9 +42,9 @@ public class Product {
 	
 	private String description;
 	
-	@ManyToOne
-	@JoinColumn(name = "order_id")
-	private OrderDetail orderId;
+//	@ManyToOne
+//	@JoinColumn(name = "order_id")
+//	private OrderDetail orderId;
 	
 	@ManyToOne
 	@JoinColumn(name = "seller_id")

@@ -15,7 +15,7 @@ import lombok.*;
 @Setter
 @Getter
 @NoArgsConstructor
-public class OrderDetail{
+public class OrderInfo{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -26,47 +26,40 @@ public class OrderDetail{
 	@JoinColumn(name = "customer_id")
 	private Customer customerId;
 	
-	@OneToMany(mappedBy = "orderId",cascade = CascadeType.ALL)
-	private List<Product> products = new ArrayList<>();
+	@OneToMany(mappedBy = "orderInfoId",cascade = CascadeType.ALL)
+	private List<OrderItem> orderItmes = new ArrayList<>();
 	
 	@Column(name = "order_date")
 	private LocalDate orderDate;
 	
 	@DecimalMin(value = "0.00")
-	private double payment;
+	private double totalAmount;
 	
-	private int quantity;
-	
-	public OrderDetail(int quantity) {
-		this.quantity = quantity;
+	public OrderInfo(int custId) {
 		orderDate = LocalDate.now();
 		
 	}
 	
-	//how to find payment
-//	public void paymentDetail() {
-//		this.payment =
-//	}
 	
 	//helper methods
-	public boolean addProduct(Product p) {
-		boolean flag = false;
-		products.add(p);
-		payment = p.getPrice()*quantity;
-		flag = true;
-		return flag;
-	}
-	
-	public boolean removeProduct(Product p) {
-		boolean flag = false;
-		products.remove(p);
-		flag = true;
-		return flag;
-	}
+//	public boolean addOrderItem(order p) {
+//		boolean flag = false;
+//		products.add(p);
+//		payment = p.getPrice()*quantity;
+//		flag = true;
+//		return flag;
+//	}
+//	
+//	public boolean removeProduct(Product p) {
+//		boolean flag = false;
+//		products.remove(p);
+//		flag = true;
+//		return flag;
+//	}
 	
 	@Override
 	public String toString() {
-		return "orders: "+this.products+"    quantity: "+this.quantity+"   Amount: "+this.payment;
+		return "orderInfo: " + this.id+"   "+this.customerId+"    "+this.totalAmount+"\n";
 	}
 }
 
