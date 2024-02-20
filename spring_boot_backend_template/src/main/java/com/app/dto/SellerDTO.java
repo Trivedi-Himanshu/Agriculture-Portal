@@ -34,15 +34,15 @@ public class SellerDTO {
 	
 	private String Pname;
 	
-	//product
-	private String brand;
-	
-	private double price;
-	
-	private String desc;
-	
-	//category
-	private String catName;
+//	//product
+//	private String brand;
+//	
+//	private double price;
+//	
+//	private String desc;
+//	
+//	//category
+//	private String catName;
 	
 //	private List<Product> products = new ArrayList<>();
 }

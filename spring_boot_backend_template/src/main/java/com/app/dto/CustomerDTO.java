@@ -26,24 +26,24 @@ public class CustomerDTO {
 	
 	private String gender;
 	
-	//address
-	private String state;
-	
-	private String city;
-	
-	private String zip;
-	
-	private String country;
-	
-	//feedback
-	private String message;
-	
-	private int rating;
-
-	//payment
-	private String cardName;
-	
-	private long cardNo;
-	
-	private double amount;
+//	//address
+//	private String state;
+//	
+//	private String city;
+//	
+//	private String zip;
+//	
+//	private String country;
+//	
+//	//feedback
+//	private String message;
+//	
+//	private int rating;
+//
+//	//payment
+//	private String cardName;
+//	
+//	private long cardNo;
+//	
+//	private double amount;
 }

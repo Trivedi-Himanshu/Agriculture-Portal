@@ -1,5 +1,6 @@
 package com.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -28,8 +29,12 @@ public class CustomerService implements ICustomerService{
 	
 	@Override
 	public List<Customer> findAll(){
-		List<Customer> ListCustomer = customerDao.findAll();
-		return ListCustomer;
+		List<CustomerDTO> listCust = new ArrayList<CustomerDTO>();
+		List<Customer> listCustomer = customerDao.findAll();
+		
+//		listCust = mapper.map(listCustomer, CustomerDTO.class);
+		
+		return listCustomer;
 	}
 	
 	@Override
@@ -41,12 +46,12 @@ public class CustomerService implements ICustomerService{
 	public Boolean addCustomer(CustomerDTO dto) {
 		boolean flag = false;
 		Customer cust=mapper.map(dto, Customer.class);
-		Address addr=mapper.map(dto, Address.class);
-		addr.setCustomerId(cust);                    //----this is the change i have made
+//		Address addr=mapper.map(dto, Address.class);
+//		addr.setCustomerId(cust);                    //----this is the change i have made
 		
 		
 		customerDao.save(cust);
-		addressDao.save(addr);
+//		addressDao.save(addr);
 		
 		flag = true;
 		return flag;
