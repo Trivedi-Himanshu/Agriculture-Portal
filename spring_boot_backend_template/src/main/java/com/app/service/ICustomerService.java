@@ -8,9 +8,9 @@ import com.app.entities.Customer;
 
 public interface ICustomerService {
 	
-	List<Customer> findAll();
+	List<CustomerDTO> findAll();
 	
-	Customer findByEmail(String email);
+	CustomerDTO findByEmail(String email);
 	
 	Boolean addCustomer(CustomerDTO dto);
 }

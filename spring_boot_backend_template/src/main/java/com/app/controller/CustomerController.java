@@ -23,12 +23,12 @@ public class CustomerController {
 	CustomerService customerService;
 	
 	@GetMapping("/all")
-	public List<Customer> findAll(){
+	public List<CustomerDTO> findAll(){
 		return customerService.findAll();
 	}
 	
 	@GetMapping("/byEmail")
-	public Customer findByEmail(String email) {
+	public CustomerDTO findByEmail(String email) {
 		return customerService.findByEmail(email);
 	}
 	

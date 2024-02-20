@@ -1,6 +1,8 @@
 package com.app.service;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
@@ -27,26 +29,39 @@ public class CustomerService implements ICustomerService{
 	private ModelMapper mapper;
 	
 	@Override
-	public List<Customer> findAll(){
-		List<Customer> ListCustomer = customerDao.findAll();
-		return ListCustomer;
+	public List<CustomerDTO> findAll(){
+		List<CustomerDTO> listCustDto = new ArrayList<CustomerDTO>(); 
+
+		List<Customer> listCustomer = customerDao.findAll();
+		
+		listCustDto = listCustomer.stream()
+	            .map(c -> mapper.map(c, CustomerDTO.class))
+	            .collect(Collectors.toList());
+		
+		return listCustDto;
+		
 	}
 	
 	@Override
-	public Customer findByEmail(String email) {
-		return customerDao.findByEmail(email);
+	public CustomerDTO findByEmail(String email) {
+		
+		Customer cust = customerDao.findByEmail(email);
+		
+		CustomerDTO custDto = mapper.map(cust, CustomerDTO.class);
+		
+		return custDto;
 	}
 	
 	@Override
 	public Boolean addCustomer(CustomerDTO dto) {
 		boolean flag = false;
 		Customer cust=mapper.map(dto, Customer.class);
-		Address addr=mapper.map(dto, Address.class);
-		addr.setCustomerId(cust);                    //----this is the change i have made
+//		Address addr=mapper.map(dto, Address.class);
+//		addr.setCustomerId(cust);                    //----this is the change i have made
 		
 		
 		customerDao.save(cust);
-		addressDao.save(addr);
+//		addressDao.save(addr);
 		
 		flag = true;
 		return flag;
