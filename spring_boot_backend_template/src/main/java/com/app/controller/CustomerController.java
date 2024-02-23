@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,11 +34,16 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/addCustomer")
-	public boolean addCustomer(@RequestBody CustomerDTO dto) {
+	public boolean addCustomer( CustomerDTO dto) {
 		boolean flag = false;
 		customerService.addCustomer(dto);
 		flag = true;
 		return flag;
+	}
+	
+	@PutMapping("/update")
+	public CustomerDTO update(CustomerDTO dto, String email) {
+		return customerService.update(dto, email);
 	}
 }
 

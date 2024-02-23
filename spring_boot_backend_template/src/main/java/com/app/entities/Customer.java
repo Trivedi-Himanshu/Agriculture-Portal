@@ -45,7 +45,7 @@ public class Customer{
 	@Column(nullable = false)
 	private long phone;
 	
-	@Column(name = "create_date", insertable = true, updatable = false)
+	@Column(name = "create_date")
 	private LocalDate createDate;
 	
 	@Column(nullable = false)
@@ -57,7 +57,16 @@ public class Customer{
 		this.password = pswd;
 		this.phone = phone;
 		this.gender = gender;
-		createDate = LocalDate.now();
+		this.createDate = LocalDate.now();
+	}
+	
+	public Customer(String name, LocalDate createDate, String email, String pswd, long phone, String gender) {
+		this.name = name;
+		this.email = email;
+		this.password = pswd;
+		this.phone = phone;
+		this.gender = gender;
+		this.createDate = createDate;
 	}
 	
 	public String toString() {

@@ -1,7 +1,10 @@
 package com.app.service;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
@@ -28,9 +31,14 @@ public class CustomerService implements ICustomerService{
 	@Override
 
 	public List<CustomerDTO> findAll(){
+		
 		List<CustomerDTO> listCustDto = new ArrayList<CustomerDTO>(); 
-
-		List<Customer> listCustomer = customerDao.findAll();
+		
+		Comparator<Customer> comp = (Customer c1, Customer c2) -> {
+			return c1.getEmail().compareTo(c1.getEmail());
+		};
+		
+		List<Customer> listCustomer = customerDao.findAll().stream().sorted(comp).collect(Collectors.toList());
 		
 		listCustDto = listCustomer.stream()
 	            .map(c -> mapper.map(c, CustomerDTO.class))
@@ -54,14 +62,24 @@ public class CustomerService implements ICustomerService{
 	public Boolean addCustomer(CustomerDTO dto) {
 		boolean flag = false;
 		Customer cust=mapper.map(dto, Customer.class);
-//		Address addr=mapper.map(dto, Address.class);
-//		addr.setCustomerId(cust);                    //----this is the change i have made
-		
-		
+	
 		customerDao.save(cust);
-//		addressDao.save(addr);
 		
 		flag = true;
 		return flag;
+	}
+	
+	public CustomerDTO update(CustomerDTO dto, String email) {
+		Customer cust = customerDao.findByEmail(email);
+		
+		if(cust == null) {
+			return null;
+		}
+		
+//		customerDao.delete(cust);
+		
+		cust = mapper.map(dto, Customer.class);
+		
+		return mapper.map(customerDao.save(cust),CustomerDTO.class);
 	}
 }

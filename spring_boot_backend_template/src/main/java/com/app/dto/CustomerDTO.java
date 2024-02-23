@@ -1,5 +1,6 @@
 package com.app.dto;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 import com.app.entities.Address;
@@ -29,33 +30,13 @@ public class CustomerDTO {
 	
 	 String gender;
 	
-<<<<<<< HEAD
-//	//address
-//	private String state;
-//	
-//	private String city;
-//	
-//	private String zip;
-//	
-//	private String country;
-//	
-//	//feedback
-//	private String message;
-//	
-//	private int rating;
-//
-//	//payment
-//	private String cardName;
-//	
-//	private long cardNo;
-//	
-//	private double amount;
-=======
-	public CustomerDTO(String name,String email,String gender,long phone) {
-		this.name = name;
-		this.email = email;
-		this.gender = gender;
-		this.phone = phone;
-	}
->>>>>>> branch3
+
+//	public CustomerDTO(String name,String email,String gender,long phone) {
+//		this.name = name;
+//		this.email = email;
+//		this.gender = gender;
+//		this.phone = phone;
+//		this.createDate = LocalDate.now();
+//	}
+
 }
