@@ -3,6 +3,7 @@ package com.app.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,15 +18,28 @@ import com.app.service.CustomerService;
 
 @RestController
 @RequestMapping("/customer")
-@CrossOrigin(origins="http://localhost:8080")
+//@CrossOrigin(origins="http://localhost:8080")
+@CrossOrigin
 
 public class CustomerController {
 	@Autowired
 	CustomerService customerService;
 	
+	
+//	public ResponseEntity<?> findAllCustomers() {
+//		List<Customer> result = customerService.findAllCustomers();
+//		return Response.success(result);
+//	}
+	
+//	public ResponseEntity<?> getEmpDetailsByDepartment(@PathVariable Long deptId) throws IOException {
+//		System.out.println("get emps by dept "+deptId);
+//		return ResponseEntity.ok(employeeService.getAllEmployeesFromDept(deptId));
+//	}
+	
 	@GetMapping("/all")
-	public List<CustomerDTO> findAll(){
-		return customerService.findAll();
+	public ResponseEntity<?> findAll(){
+//		List<CustomerDTO> result = customerService.findAll();
+		return ResponseEntity.ok(customerService.findAll());
 	}
 	
 	@GetMapping("/byEmail")
