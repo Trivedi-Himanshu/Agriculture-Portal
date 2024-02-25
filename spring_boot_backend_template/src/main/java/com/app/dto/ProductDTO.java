@@ -1,34 +1,46 @@
 package com.app.dto;
 
-import java.time.LocalDate;
 
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
+import org.springframework.beans.BeanUtils;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.app.entities.Seller;
+import com.backend.Agriculture.entities.Product;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-public class ProductDTO {
-	private String pNname;
+public class ProductDto {
+
+	private int productId;
 	
-	private String Category_id;
+	private String pname;
+	
+	private String categoryName;
 	
 	private double price;
 	
-	private Byte[] image;
+	private int sellerId;
 	
-	private LocalDate manufacteDate;
+	private String brand;
 	
-	private String description;
+	//used while updating the product
+	private String photo;
 	
-//	private OrderDetail orderId;
+	//used while uploading the product
+	private MultipartFile pic;
 	
-	private Seller sellerId;
+	@Override
+	public String toString() {
+		return "ProductDTO [productId=" + productId + ", pname=" + pname + ", categoryName=" + categoryName + ",price=" + price + ", sellerId=" + sellerId + "]";
+	}
 	
+	public static Product toEntity(ProductDto dto) {
+		Product product=new Product();
+		// source to destination copied excluding pic parameter
+		BeanUtils.copyProperties(dto, product, "pic");		
+		return product;
+	}
 }
+

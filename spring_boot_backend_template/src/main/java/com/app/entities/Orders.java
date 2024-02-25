@@ -1,10 +1,15 @@
 package com.app.entities;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,19 +21,24 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Address {
-
+public class Orders {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private int orderId;
 	
-	private String city;
+	private Date orderDate;
 	
-	private String state;
+	@ManyToOne
+	@JoinColumn(name="customerId")
+	private Customer customer;
 	
-	private String zip;
+	@ManyToOne
+	@JoinColumn(name="addressId")
+	private Address address;
 	
-	private String country;
+	@ManyToOne
+	@JoinColumn(name="paymentId")
+	private Payment payment;
 }
-
 

@@ -1,64 +1,64 @@
 package com.app.entities;
 
-import java.time.LocalDate;
 
-import javax.persistence.*;
+import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
-@Entity
-@Setter
 @Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Product {
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int productId;
 	
-	@Column(nullable = false)
-	private String pName;
-//	
-//	@Column(nullable = false)
-//	private String brand;
-//	
-	//@Enumerated(EnumType.STRING) -- (now its an tables)
+	@Column(length=30)
+	@NotBlank(message="name must be supplied")
+	private String pname;
+	
+	@Column(length=30)
+	@NotBlank(message="name must be supplied")
+	private String brand;
+	
 	@ManyToOne
-	@JoinColumn(name = "category_id")
-	private Category categoryId;
+	@JoinColumn(name="categoryId")
+	private Category category;
 	
-	@Column(nullable = false)
 	private double price;
 	
-	@Lob
-	private Byte[] image;
+	private String photo;
 	
-	@Column(name = "manf_date", insertable = true, updatable = false)
-	private LocalDate manufacteDate;
-	
-	private String description;
-	
-//	@ManyToOne
-//	@JoinColumn(name = "order_id")
-//	private OrderDetail orderId;
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_timestamp", insertable = true, updatable = false)
+	private Date createdTimestamp=new Date();    //date generated here not mapped in Dto
 	
 	@ManyToOne
-	@JoinColumn(name = "seller_id")
-	private Seller sellerId;
-	
-	public Product(String name,String brand,double price) {
-		this.pName = name;
-//		this.brand = brand;
-		this.price = price;
-		manufacteDate = LocalDate.now();
-	}
+	@JoinColumn(name="sellerId")
+	private Seller seller;
 	
 	@Override
 	public String toString() {
-		return " Product: "+pName+"   "+""+"   "+categoryId.getCatName()+"   "+price+"   "+manufacteDate+"\n";
+		return "Product [productId=" + productId + ", pname=" + pname + ", pcategory=" + category.getCategoryName() + ", price="
+				+ price + ", photo=" + photo + ", createdTimestamp=" + createdTimestamp + "]";
 	}
 }
+

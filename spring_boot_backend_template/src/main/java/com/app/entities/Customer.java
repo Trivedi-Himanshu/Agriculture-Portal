@@ -1,81 +1,66 @@
 package com.app.entities;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import java.util.Date;
 
-import lombok.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
-@Entity
+import org.hibernate.validator.constraints.Length;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Getter
 @Setter
-@NoArgsConstructor        //--its used by ModelMapper internally therefore give noArgsConstructor
-public class Customer{
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+public class Customer {
 	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Integer id;
+	private int id;
 	
-	@OneToMany(mappedBy = "customerId", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Address> address;
-	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Feedback> feedbacks = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<OrderInfo> orders = new ArrayList<>();
-	
-	@OneToMany(mappedBy = "customerId",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	private List<Payment> payments = new ArrayList<>();
-	
+	@Column(length=30)
+	@NotBlank(message="name must be supplied")
 	private String name;
 	
-	@Column(nullable = false)
+	private String city;
+	
+	@Column(unique=true)
+	@NotBlank(message="Email is required")
+	@Length(min=5,max=25,message="Invalid Email Length")
+	@Email(message="Invalid email format")
 	private String email;
 	
-	@Column(nullable = false)
-
+	//@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})")
 	private String password;
 	
-	@Column(nullable = false)
+	//@Length(max=10,min=10)
 	private long phone;
 	
-	@Column(name = "create_date")
-	private LocalDate createDate;
-	
-	@Column(nullable = false)
 	private String gender;
 	
-	public Customer(String name, String email, String pswd, long phone, String gender) {
-		this.name = name;
-		this.email = email;
-		this.password = pswd;
-		this.phone = phone;
-		this.gender = gender;
-		this.createDate = LocalDate.now();
-	}
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "created_timestamp", insertable = true, updatable = false)
+	private Date createdTimestamp=new Date();
 	
-	public Customer(String name, LocalDate createDate, String email, String pswd, long phone, String gender) {
-		this.name = name;
-		this.email = email;
-		this.password = pswd;
-		this.phone = phone;
-		this.gender = gender;
-		this.createDate = createDate;
-	}
 	
+	@Override
 	public String toString() {
-		return "Customer: "+id+"   "+name+"   "+email+"   "+phone+"   "+gender+"   "+createDate+"   "+" \n"; //here we can write only address instead of address.toString()
+		return "Customer [id=" + id + ", name=" + name + ", city=" + city + ", email=" + email + ",gender="+gender+", password=" + password
+				+ ", phone=" + phone + ", createdTimestamp=" + createdTimestamp + "]";
 	}
 }
 
-
-
-//to be applied on password in dto
-//@Column(length = 20,nullable = false)
-//@Pattern(regexp="((?=.*\\d)(?=.*[a-z])(?=.*[#@$*]).{5,20})")

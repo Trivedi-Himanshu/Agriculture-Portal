@@ -1,48 +1,28 @@
 package com.app.dto;
 
-import java.util.ArrayList;
-import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import java.util.Date;
 
-import com.app.entities.Product;
-
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
-public class SellerDTO {
-	
-	//seller
-	private long phone;
-	
-	
+public class SellerDto {
+
 	private String name;
 	
+	private String city;
 	
 	private String email;
 	
-	
 	private String password;
 	
-	private String Pname;
+	//@Length(max=10,min=10)
+	private long phone;
 	
-//	//product
-//	private String brand;
-//	
-//	private double price;
-//	
-//	private String desc;
-//	
-//	//category
-//	private String catName;
+	private Date createdTimestamp=new Date();
 	
-//	private List<Product> products = new ArrayList<>();
+	//used for forget password
+	private String otp;
 }

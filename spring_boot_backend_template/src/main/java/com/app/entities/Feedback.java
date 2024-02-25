@@ -1,45 +1,56 @@
 package com.app.entities;
 
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
 
-import lombok.*;
+import org.hibernate.validator.constraints.Length;
 
-@Entity
-@Setter
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
 @Getter
-@NoArgsConstructor
-public class Feedback{
+@Setter
+@ToString
+@Entity
+@Table(name="feedback")
+public class Feedback {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Integer id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int feedbackId;
+	@Column(name = "name")
+	private String name;
 	
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customerId;
+	@Column(name="email")
+	@NotBlank(message = "Email is required")
+	@Length(min = 5,max=50,message = "Invalid Email length")
+	@Email(message = "Invalid email format")
+	private String email;
 	
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	private Product productId;
+	@Column(length = 60, name="message")
+	private String message;
 	
-	@Max(5)
-	@Min(1)
+	@Min(value=1)
+	@Max(value=5)
+	@Column(name="rating")
 	private int rating;
 	
-	private String message;
-	//email and name we will get from customers pojo
+	@ManyToOne
+	@JoinColumn(name="customerId")
+	private Customer customer;
 	
-	public Feedback(Customer customer, int rating, String message) {
-		this.customerId = customer;
-		this.rating = rating;
-		this.message = message;
-	}
 	
-	@Override
-	public String toString() {
-		return "Rating: "+this.rating+"\nFeedback: "+this.message+"\n";
-	}
 }
+	

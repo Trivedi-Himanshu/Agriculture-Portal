@@ -1,46 +1,52 @@
 package com.app.entities;
 
-import java.time.LocalDate;
 
-import javax.persistence.*;
+import java.util.Date;
 
-import lombok.*;
 
-@Entity
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 @Getter
 @Setter
 @NoArgsConstructor
-public class Payment{
-	
+@AllArgsConstructor
+@Entity
+@Table(name="payments")
+public class Payment {
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private Integer id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
 	
-	@ManyToOne
-	@JoinColumn(name = "customer_id")
-	private Customer customerId;
-	
-	@Column(name="card_name")
-	private String cardName;
-	
-	@Column(name = "card_no", unique = true)
+//	@Length(max=16,min=16)
+//	@NotBlank(message="Card Number must be supplied")
 	private long cardNo;
+	
+	//@NotBlank(message="Name must be supplied")
+	private String nameOnCard;
+	
+	//@NotBlank(message="Amount must be supplied")
 	private double amount;
 	
-	@Column(name = "payment_date")
-	private LocalDate paymentDate;
-	
-	public Payment(String nameOnCard,long cardNo,double amount) {
-		this.cardName = nameOnCard;
-		this.cardNo = cardNo;
-		this.amount = amount;
-		this.paymentDate = LocalDate.now();
-	}
+	//@NotBlank(message="Date must be supplied")
+	private Date paymentDate;
 	
 	@Override
 	public String toString() {
-		return "Payment details: "+ cardName+"   "+cardNo+"   "+amount+"   "+paymentDate+"\n";
+		return "Payment [id=" + id + ", cardno=" + cardNo + ", nameOnCard=" + nameOnCard + ", amount=" + amount
+				+ ", paymentDate=" + paymentDate + "]";
 	}
 }
 
