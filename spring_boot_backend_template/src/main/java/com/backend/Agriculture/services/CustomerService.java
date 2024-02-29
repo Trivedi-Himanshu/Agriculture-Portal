@@ -9,9 +9,9 @@ import com.backend.Agriculture.models.CustomerDto;
 
 public interface CustomerService {
 
-	Customer registerUser(CustomerDto customerDto);
-
 	Customer validate(String email, String password);
+
+	Customer registerUser(CustomerDto customerDto);
 
 	List<Customer> findAllCustomers();
 

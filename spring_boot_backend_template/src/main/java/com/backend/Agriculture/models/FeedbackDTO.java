@@ -26,17 +26,17 @@ import lombok.Setter;
 public class FeedbackDTO {
 
 	private int feedbackId;
+
+	private String name;
 	
 	private String email;
+	
+	private int customerId;
 	
 	private String message;
 	
 	private int rating;
 	
-	private int customerId;
-	
-	private String name;
-
 	public Feedback toEntity(FeedbackDTO dto) {
 		Feedback feedback=new Feedback();
 		BeanUtils.copyProperties(dto, feedback);		
